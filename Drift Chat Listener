@@ -1,0 +1,247 @@
+<script>
+drift.on('ready', function (api, eventData) {
+// eventData content described on the "Configuration and Settings" page.
+// fires when a user starts a conversation
+window.drift.on("startConversation", function (data) {
+window.dataLayer = window.dataLayer || [];
+window.dataLayer.push({
+'event': 'driftchat_action',
+'chatAction': "User started a new conversation",
+'chatConversationID': data.conversationId,
+'chatSessionID': drift_session_id,
+'chatWidgetID': drift.embedId
+});
+});
+//fires when GDPR is clicked
+window.drift.on("gdprClicked", function(data) {
+window.dataLayer = window.dataLayer || [];
+window.dataLayer.push({
+'event': 'driftchat_action',
+'chatAction': "User started a new conversation",
+'chatGDPRAccepted': data.accepted,
+'chatUserID': data.endUser,
+'chatSessionID': drift_session_id,
+'chatWidgetID': drift.embedId
+});
+});
+// fires when campaign begins.
+window.drift.on("campaign:open", function (data) {
+window.dataLayer = window.dataLayer || [];
+window.dataLayer.push({
+'event': 'driftchat_action',
+'chatAction': "User opened campaign",
+'chatCampaignID': data.campaignId,
+'chatSessionID': drift_session_id,
+'chatWidgetID': drift.embedId
+});
+});
+// fires when a call to action (CTA) is clicked.
+window.drift.on("campaign:click", function (data) {
+window.dataLayer = window.dataLayer || [];
+window.dataLayer.push({
+'event': 'driftchat_action',
+'chatAction': "User clicked campaign",
+'chatCampaignID': data.campaignId,
+'chatSessionID': drift_session_id,
+'chatWidgetID': drift.embedId
+});
+});
+// fires when a user closes a campaign message.
+window.drift.on("campaign:dismiss", function (data) {
+window.dataLayer = window.dataLayer || [];
+window.dataLayer.push({
+'event': 'driftchat_action',
+'chatAction': "User dismissed campaign",
+'chatCampaignID': data.campaignId,
+'chatSessionID': drift_session_id,
+'chatWidgetID': drift.embedId
+});
+});
+// fires when a user starts a chat or submits an email capture of a campaiggn
+window.drift.on("campaign:submit", function (data) {
+window.dataLayer = window.dataLayer || [];
+window.dataLayer.push({
+'event': 'driftchat_action',
+'chatAction': "User submitted campaign",
+'chatCampaignID': data.campaignId,
+'chatSessionID': drift_session_id,
+'chatWidgetID': drift.embedId
+});
+});
+// fires when a chat widget is opened
+window.drift.on('chatOpen', function () {
+window.dataLayer = window.dataLayer || [];
+window.dataLayer.push({
+'event': 'driftchat_action',
+'chatAction': "Chat widget opened",
+'chatSessionID': drift_session_id,
+'chatWidgetID': drift.embedId
+});
+});
+// fires when a chat widget is closed
+window.drift.on('chatClose', function () {
+window.dataLayer = window.dataLayer || [];
+window.dataLayer.push({
+'event': 'driftchat_action',
+'chatAction': "Chat widget closed",
+'chatSessionID': drift_session_id,
+'chatWidgetID': drift.embedId
+});
+});
+// fires whenever a leadbot playbook fires to a site visitor.
+window.drift.on("conversation:playbookFired", function(data) {
+window.dataLayer = window.dataLayer || [];
+window.dataLayer.push({
+'event': 'driftchat_action',
+'chatAction': "Playbook fired",
+'chatConversationID': data.conversationId,
+'chatPlaybookID': data.playbookId,
+'chatInteractionID': data.interactionId,
+'chatCampaignID': data.campaignId,
+'chatSessionID': drift_session_id,
+'chatWidgetID': drift.embedId
+});
+});
+// fires whenever a leadbot playbook is clicked by the visitor.
+window.drift.on("conversation:playbookClicked", function(data) {
+window.dataLayer = window.dataLayer || [];
+window.dataLayer.push({
+'event': 'driftchat_action',
+'chatAction': "Playbook clicked",
+'chatConversationID': data.conversationId,
+'chatPlaybookID': data.playbookId,
+'chatInteractionID': data.interactionId,
+'chatCampaignID': data.campaignId,
+'chatSessionID': drift_session_id,
+'chatWidgetID': drift.embedId
+});
+});
+// fires whenever a leadbot playbook is dismissed by the visitor.
+window.drift.on("conversation:playbookDismissed", function(data) {
+window.dataLayer = window.dataLayer || [];
+window.dataLayer.push({
+'event': 'driftchat_action',
+'chatAction': "Playbook dismissed",
+'chatConversationID': data.conversationId,
+'chatPlaybookID': data.playbookId,
+'chatInteractionID': data.interactionId,
+'chatCampaignID': data.campaignId,
+'chatSessionID': drift_session_id,
+'chatWidgetID': drift.embedId
+});
+});
+// fires when the schedule meeting card is pushed to a conversation (or a "calendar drop")
+window.drift.on("scheduling:requestMeeting", function(data) {
+window.dataLayer = window.dataLayer || [];
+window.dataLayer.push({
+'event': 'driftchat_action',
+'chatAction': "User wants to schedule a meeting",
+'chatTeamMemberID': data.teamMember.id,
+'chatTeamMemberName': data.teamMember.name,
+'chatSessionID': drift_session_id,
+'chatWidgetID': drift.embedId
+});
+});
+// fires when the user books a meeting with a member of your team
+window.drift.on("scheduling:meetingBooked", function(data) {
+window.dataLayer = window.dataLayer || [];
+window.dataLayer.push({
+'event': 'driftchat_action',
+'chatAction': "User booked a meeting",
+'chatTeamMemberID': data.teamMember.id,
+'chatTeamMemberName': data.teamMember.name,
+'chatMeetingTime': data.meeting.time,
+'chatMeetingDuration': data.meeting.duration,
+'chatMeetingTimeZone': data.meeting.timeZone,
+'chatConversationID': data.conversationId,
+'chatPlaybookID': data.playbookId,
+'chatInteractionID': data.interactionId,
+'chatCampaignID': data.campaignId,
+'chatSessionID': drift_session_id,
+'chatWidgetID': drift.embedId
+});
+});
+// fires when the user phone number is captureD
+window.drift.on("phoneCapture", function(data) {
+window.dataLayer = window.dataLayer || [];
+window.dataLayer.push({
+'event': 'driftchat_action',
+'chatAction': "User provided a phone number",
+'chatAuthorID': data.authorId,
+'chatMessageID': data.messageId,
+'chatPlaybookID': data.playbookId,
+'chatInteractionID': data.interactionId,
+'chatCampaignID': data.campaignId,
+'chatSessionID': drift_session_id,
+'chatWidgetID': drift.embedId
+});
+});
+// fires for the first site visitor message in each unique conversation thread, or each distinct conversation ID.
+window.drift.on("conversation:firstInteraction", function(data) {
+window.dataLayer = window.dataLayer || [];
+window.dataLayer.push({
+'event': 'driftchat_action',
+'chatAction': "First interaction",
+'chatAuthorID': data.authorId,
+'chatMessageID': data.messageId,
+'chatPlaybookID': data.playbookId,
+'chatInteractionID': data.interactionId,
+'chatCampaignID': data.campaignId,
+'chatSessionID': drift_session_id,
+'chatWidgetID': drift.embedId
+});
+});
+// fires when the welcome message is open
+window.drift.on('welcomeMessage:open', function () {
+window.dataLayer = window.dataLayer || [];
+window.dataLayer.push({
+'event': 'driftchat_action',
+'chatAction': "Welcome Message is opened",
+'chatSessionID': drift_session_id,
+'chatWidgetID': drift.embedId
+});
+});
+// fires when the welcome message is closed
+window.drift.on('welcomeMessage:close', function () {
+window.dataLayer = window.dataLayer || [];
+window.dataLayer.push({
+'event': 'driftchat_action',
+'chatAction': "Welcome Message is closed",
+'chatSessionID': drift_session_id,
+'chatWidgetID': drift.embedId
+});
+});
+// fires when the user clicks on a button in chat as a response to a question
+window.drift.on("conversation:buttonClicked", function (data) {
+window.dataLayer = window.dataLayer || [];
+window.dataLayer.push({
+'event': 'driftchat_action',
+'chatAction': "User clicked a button",
+'chatConversationID': data.conversationId,
+'chatPlaybookID': data.playbookId,
+'chatInteractionID': data.interactionId,
+'chatCampaignID': data.campaignId,
+'chatSessionID': drift_session_id,
+'chatWidgetID': drift.embedId,
+'chatquestionID': data.questionId,
+'chatButtonText': data.buttonBody,
+'chatMessageID': data.messageId,
+'chatAuthorID': data.authorId
+});
+});
+window.drift.on("emailCapture", function (e) {
+window.dataLayer = window.dataLayer || [];
+window.dataLayer.push({
+'event': 'driftchat_action',
+'chatAction': "User email captured",
+'chatVisitorEmail': e.data.email,
+'chatConversationID': e.data.conversationId,
+'chatPlaybookID': e.data.playbookId,
+'chatInteractionID': e.data.interactionId,
+'chatCampaignID': e.data.campaignId,
+'chatSessionID': drift_session_id,
+'chatWidgetID': drift.embedId
+});
+});
+});
+</script>
