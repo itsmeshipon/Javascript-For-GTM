@@ -1,0 +1,31 @@
+<script>
+//fires on actual successful PaperForm submission
+window.addEventListener('PaperformSubmission', function(e) { 
+window.dataLayer = window.dataLayer || [];
+window.dataLayer.push({
+'event': 'paperformSubmissionEvent',
+'eventType': e.type,
+'form_ID': e.detail.form_id,
+'submission_ID': e.detail.submission_id,
+'event_timestamp': e.timeStamp,
+'formData': e.detail.data
+});
+console.log("DD - paperform submitted") 
+})
+
+//Fires on paperForm form step change
+
+window.addEventListener('PaperformPageChange', function(e) { 
+window.dataLayer = window.dataLayer || [];
+window.dataLayer.push({
+'event': 'paperformStepChange',
+'eventType': e.type,
+'form_ID': e.detail.form_id,
+'paperForm_Step': e.detail.currentPage,
+'paperForm_Total_Step': e.detail.totalPages,
+'event_timestamp': e.timeStamp
+});
+
+console.log("DD - paperform step change") 
+})
+</script>
