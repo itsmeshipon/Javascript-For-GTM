@@ -1,0 +1,54 @@
+<script>
+//Fires only when CTA form and survey elements have been submitted.
+window.addEventListener("cfSubmit", function(event) {
+window.dataLayer = window.dataLayer || [];
+window.dataLayer.push({
+'event': 'ConvertFlow_Form_Submitted',
+'formfield': event.detail.fields,
+'eventData': event.detail,
+'userDemography': convertflow.person.data.properties,
+'userID': convertflow.person.id,
+'userTrafficSource': convertflow.person.referral_source,
+'userLandingPage': convertflow.person.landing_page
+});
+});
+//Fires when a CTA has been viewed and upon reaching each additional step.
+window.addEventListener("cfView", function(event) {
+window.dataLayer = window.dataLayer || [];
+window.dataLayer.push({
+'event': 'ConvertFlow_Campaign_Impression',
+'eventData': event.detail,
+'userDemography': convertflow.person.data.properties,
+'userID': convertflow.person.id,
+'userTrafficSource': convertflow.person.referral_source,
+'userLandingPage': convertflow.person.landing_page
+});
+});
+//
+//Fires when a CTA has been viewed and upon reaching each additional step.
+window.addEventListener("cfClose", function(event) {
+window.dataLayer = window.dataLayer || [];
+window.dataLayer.push({
+'event': 'ConvertFlow_Campaign_Dismissed',
+'formfield': event.detail.fields,
+'eventData': event.detail,
+'userDemography': convertflow.person.data.properties,
+'userID': convertflow.person.id,
+'userTrafficSource': convertflow.person.referral_source,
+'userLandingPage': convertflow.person.landing_page
+});
+});
+//Fires when the CTA has been tracked as completed by the "Track completion of CTA" automation
+window.addEventListener("cfCompletion", function(event) {
+window.dataLayer = window.dataLayer || [];
+window.dataLayer.push({
+'event': 'ConvertFlow_Campaign_Completed',
+'formfield': event.detail.fields,
+'eventData': event.detail,
+'userDemography': convertflow.person.data.properties,
+'userID': convertflow.person.id,
+'userTrafficSource': convertflow.person.referral_source,
+'userLandingPage': convertflow.person.landing_page
+});
+});
+</script>
