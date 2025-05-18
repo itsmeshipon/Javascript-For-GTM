@@ -1,0 +1,95 @@
+<script type="text/javascript">
+//get the user details
+olark('api.visitor.getDetails', function(details){
+dataLayer.push({
+'event': 'OlarkChatInfo',
+'userDetails': details
+});
+});
+olark('api.chat.onReady', function(){
+dataLayer.push({
+'event': 'OlarkChatAvailable'
+});
+});
+//visitor exapnds chat box
+olark('api.box.onExpand', function(event) {
+dataLayer.push({
+'event': 'OlarkChatAction',
+'chatAction': 'Visitor_Expanded_Olark'
+});
+});
+//
+olark('api.chat.onOfflineMessageToOperator', function(event) {
+dataLayer.push({
+'event': 'OlarkChatAction',
+'chatAction': 'Visitor_Sent_Offline_Message',
+'chatMessage': event.message.body,
+'chat_details': event
+});
+});
+// Triggers when the first message has been sent
+// Including automated messages from the Greeter or Targeted Chat rules
+olark('api.chat.onBeginConversation', function() {
+dataLayer.push({
+'event': 'OlarkChatAction',
+'chatAction': 'Visitor_Started_Conversation'
+});
+});
+//track of visitors who have sent a message to an operator
+olark('api.chat.onMessageToVisitor', function(event) {
+dataLayer.push({
+'event': 'OlarkChatAction',
+'chatAction': 'Visitor_Message_Operator',
+'chatMessage': event.message.body,
+'chat_details': event
+});
+});
+//tracks Whenever a message is sent to the visitor
+olark('api.chat.onMessageToOperator', function(event) {
+dataLayer.push({
+'event': 'OlarkChatAction',
+'chatAction': 'Operator_ Message_Visitor',
+'chatMessage': event.message.body,
+'chatOperator': event.message.nickname,
+'chat_details': event
+});
+});
+//tracks Whenever a command is sent from the visitor, e.g chat end, lead
+olark('api.chat.onCommandFromOperator', function(event) {
+dataLayer.push({
+'event': 'OlarkChatAction',
+'chatAction': 'Operator_ Command_Action',
+'chatMessage': event.message.body,
+'chatOperator': event.message.nickname,
+'chat_details': event
+});
+});
+//tracks Whenever any operator comes online
+olark('api.chat.onOperatorsAvailable', function() {
+dataLayer.push({
+'event': 'OlarkChatAction',
+'chatAction': 'Operator_Available'
+});
+});
+//tracks Whenever all operators are offline
+olark('api.chat.onOperatorsAway', function() {
+dataLayer.push({
+'event': 'OlarkChatAction',
+'chatAction': 'Operator_UnAvailable'
+});
+});
+//track chat box minimized
+olark('api.box.onHide', function() {
+dataLayer.push({
+'event': 'OlarkChatAction',
+'chatAction': 'User_Hides_Olark'
+});
+});
+//user minimizes chat box
+olark('api.box.onShrink', function() {
+dataLayer.push({
+'event': 'OlarkChatAction',
+'chatAction': 'User_Minimizes_Olark'
+});
+});
+</script>
