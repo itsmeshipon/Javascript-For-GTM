@@ -1,0 +1,74 @@
+<script>
+//Fires when the chat widget is closed
+window.fcWidget.on("widget:closed", function(resp) {
+window.dataLayer = window.dataLayer || [];
+window.dataLayer.push({
+'event': 'freshChat_Event',
+'freshEvent_type': 'chat widget closed'
+});
+});
+//Fires when the chat widget is opened
+window.fcWidget.on("widget:opened", function(resp) {
+window.dataLayer = window.dataLayer || [];
+window.dataLayer.push({
+'event': 'freshChat_Event',
+'freshEvent_type': 'chat widget opened'
+});
+});
+// fires when a user has been created
+window.fcWidget.on("user:created", function(resp) {
+window.dataLayer = window.dataLayer || [];
+window.dataLayer.push({
+'event': 'freshChat_Event',
+'freshEvent_type': 'User has been created'
+});
+});
+// fires when a user receives a message
+window.fcWidget.on("message:received", function(data) {
+window.dataLayer = window.dataLayer || [];
+window.dataLayer.push({
+'event': 'freshChat_Event',
+'freshEvent_type': 'user receives a message',
+'eventData': data
+});
+});
+// fires when a user sends a message
+window.fcWidget.on("message:sent", function(data) {
+window.dataLayer = window.dataLayer || [];
+window.dataLayer.push({
+'event': 'freshChat_Event',
+'freshEvent_type': 'user sends a message',
+'eventData': data
+});
+});
+// fires when a CSAT is received
+window.fcWidget.on("csat:received", function(data) {
+window.dataLayer = window.dataLayer || [];
+window.dataLayer.push({
+'event': 'freshChat_Event',
+'freshEvent_type': 'CSAT received',
+'eventData': data
+});
+});
+// fires when the received CSAT is updated
+window.fcWidget.on("csat:updated", function(data) {
+window.dataLayer = window.dataLayer || [];
+window.dataLayer.push({
+'event': 'freshChat_Event',
+'freshEvent_type': 'CSAT updated',
+'eventData': data
+});
+});
+// fires after the user downloaded an asset sent by the Agent
+window.fcWidget.on("download:file", function(response) {
+if (response.success) {
+window.dataLayer = window.dataLayer || [];
+window.dataLayer.push({
+'event': 'freshChat_Event',
+'freshEvent_type': 'file downloaded by the user',
+'eventData': response,
+'fileURL': response.data.url
+});
+}
+});
+</script>
