@@ -1,0 +1,31 @@
+<script>
+// Raised after the user clicks the “Submit” button, but before the form is submitted to the Cognito Forms servers. 
+Cognito.on('beforeSubmit', function(event) {
+window.dataLayer = window.dataLayer || [];
+window.dataLayer.push({
+'event': 'cognito_form_submit_button',
+'cogformID': event.data.entry.Form.Id,
+'cogformName': event.data.entry.Form.Name,
+'cogInternalFormName': event.data.entry.Form.InternalName,
+'cogformEmail': event.data.entry.Email,
+'cogFormNameObj': event.data.entry.Name,
+'cogformHasError':event.data.hasErrors
+});
+console.log("DD - submitted cognito form");
+});
+
+// Raised after the form is submitted but before the confirmation page is displayed.
+Cognito.on('beforeSubmit', function(event) {
+window.dataLayer = window.dataLayer || [];
+window.dataLayer.push({
+'event': 'cognito_form_submit_successful',
+'cogformID': event.data.entry.Form.Id,
+'cogformName': event.data.entry.Form.Name,
+'cogInternalFormName': event.data.entry.Form.InternalName,
+'cogformEmail': event.data.entry.Email,
+'cogFormNameObj': event.data.entry.Name,
+'cogformHasError': event.data.hasErrors
+});
+console.log("DD - actually submitted cognito form");
+});
+</script>
