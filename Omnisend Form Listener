@@ -1,0 +1,28 @@
+<script>
+// Function to push event details to the dataLayer
+function pushToDataLayer(eventType, eventData) {
+window.dataLayer = window.dataLayer || [];
+window.dataLayer.push({
+event: 'omnisend_form_event',
+event_type: eventType,
+form_name: eventData.form.name,
+form_id: eventData.form.id,
+form_display_type: eventData.form.displayType,
+form_version_id: eventData.form.versionID,
+form_version_name: eventData.form.versionName,
+form_values: eventData.formValues,
+brand_id: eventData.brandID,
+step: eventData.step || null,
+timestamp: eventData.timeStamp
+});
+}
+
+// Event listener for Omnisend form events
+window.addEventListener("omnisendForms", function(e) {
+var eventType = e.detail.type;
+var eventData = e.detail;
+
+// Push the event details to the dataLayer
+pushToDataLayer(eventType, eventData);
+});
+</script>
