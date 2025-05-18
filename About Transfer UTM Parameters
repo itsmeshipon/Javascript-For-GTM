@@ -1,0 +1,2 @@
+Tigger:
+DOM Ready → Page URL → matches RegEx (ignore case) → utm_medium=|utm_source=|utm_campaign=|ref=
