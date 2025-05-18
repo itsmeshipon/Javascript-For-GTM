@@ -1,0 +1,29 @@
+<script>
+// Ensure the dataLayer array is initialized
+window.dataLayer = window.dataLayer || [];
+
+// Function to push dataLayer events
+function pushDataLayerEvent(action) {
+window.dataLayer.push({
+'event': 'Kustomer_Chat_Event',
+'chat_Action': action
+});
+}
+
+// Add listeners for Kustomer chat events
+Kustomer.addListener('onOpen', function(callbackResponse) {
+pushDataLayerEvent('kustomer chat widget open');
+});
+
+Kustomer.addListener('onClose', function(callbackResponse) {
+pushDataLayerEvent('kustomer chat widget close');
+});
+
+Kustomer.addListener('onConversationCreate', function(callbackResponse) {
+pushDataLayerEvent('kustomer chat conversation create');
+});
+
+Kustomer.addListener('onUnread', function(callbackResponse) {
+pushDataLayerEvent('kustomer chat unread count change');
+});
+</script>
