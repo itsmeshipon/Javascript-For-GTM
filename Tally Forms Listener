@@ -1,0 +1,34 @@
+<script>
+// code source is from Courtney at Code and Tonic (read here https://codeandtonic.com/blog/tally-forms-conversion-tracking)
+// Determine if the browser supports "addEventListener" or "attachEvent" for event listening
+var eventMethod = window.addEventListener ? "addEventListener" : "attachEvent";
+
+// Assign the event listener function to "eventer" based on what the browser supports
+var eventer = window[eventMethod];
+
+// If the browser uses "attachEvent", use "onmessage". Otherwise, use "message"
+var messageEvent = eventMethod == "attachEvent" ? "onmessage" : "message";
+
+// Set up the event listener for messages from the child iFrame
+eventer(messageEvent,function(e) {
+// Check if the event contains "message" or "data" and assign the data to the "data" variable
+var key = e.message ? "message" : "data";
+var data = e[key];
+
+// If the event data contains "event", we'll proceed further
+if(data.includes("event")) { 
+// Parse the JSON string from the event data
+var dataParsed = JSON.parse(data);
+
+// Check if the event is a "Tally.FormSubmitted" event
+if(dataParsed.event == "Tally.FormSubmitted"){
+// If the Tally form is submitted, push the 'tally_form_submit' event to the Data Layer
+// Initialize the Data Layer if it doesn't already exist
+window.dataLayer = window.dataLayer || [];
+window.dataLayer.push({
+'event': 'tally_form_submit'
+});
+}
+}
+});
+</script>
