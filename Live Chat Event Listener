@@ -1,0 +1,61 @@
+<script>
+//when the chat window state is changed, minimized, maximized or hidden
+LiveChatWidget.on('visibility_changed', onVisibilityChanged)
+function onVisibilityChanged(data) {
+dataLayer.push({ 
+event: 'livechat interaction', 
+chatAction: "chat window" + ' ' + data.visibility
+})
+};
+// when form is submitted, prechat, survey or ticket
+LiveChatWidget.on('form_submitted', onFormSubmitted)
+function onFormSubmitted(data) {
+dataLayer.push({ 
+event: 'livechat interaction', 
+chatAction: "submitted" + ' ' + data.type + " form"
+})
+};
+// user sents a message, file or rich message
+LiveChatWidget.on('new_event', onNewEvent)
+function onNewEvent(event) {
+dataLayer.push({ 
+event: 'livechat interaction', 
+chatAction: event.type + " sent"
+})
+};
+//It is called after the customer has rated the chat, or cancelled the previous rating.
+LiveChatWidget.on('rating_submitted', onRatingSubmitted)
+function onRatingSubmitted(value) {
+dataLayer.push({ 
+event: 'livechat interaction', 
+chatAction: value + " rating submitted"
+})
+};
+//It is called after the greeting has been displayed to the customer.
+LiveChatWidget.on('greeting_displayed', onGreetingDisplayed)
+function onGreetingDisplayed(greeting) {
+dataLayer.push({ 
+event: 'livechat interaction', 
+chatAction: "greeting message displayed",
+greetingId: greeting.id
+})
+};
+//It is called after the greeting has been cancelled by the customer
+LiveChatWidget.on('greeting_hidden', onGreetingHidden)
+function onGreetingHidden(greeting) {
+dataLayer.push({ 
+event: 'livechat interaction', 
+chatAction: "greeting message dismissed",
+greetingId: greeting.id
+})
+};
+//It is called after the rich message button has been clicked by the customer.
+LiveChatWidget.on('rich_message_button_clicked', onRichMessageButtonClicked)
+function onRichMessageButtonClicked(data) {
+dataLayer.push({ 
+event: 'livechat interaction', 
+chatAction: "clicked rich message button",
+greetingId: greeting.id
+})
+}; 
+</script>
