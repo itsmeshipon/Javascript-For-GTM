@@ -1,0 +1,44 @@
+<script type="text/javascript">
+window.intercomSettings = {
+app_id: "<app_id here>"
+};
+</script>
+<script type="text/javascript">
+(function() {
+var c = window,
+a = c.Intercom;
+if ("function" === typeof a) a("reattach_activator"), a("update", intercomSettings);
+else {
+var e = document,
+d = function() {
+d.c(arguments)
+};
+d.q = [];
+d.c = function(b) {
+d.q.push(b)
+};
+c.Intercom = d;
+a = function() {
+var b = e.createElement("script");
+b.type = "text/javascript";
+b.async = !0;
+b.src = "https://widget.intercom.io/widget/xe395ivj";
+var f = e.getElementsByTagName("script")[0];
+f.parentNode.insertBefore(b, f)
+};
+c.attachEvent ? c.attachEvent("onload", a) : c.addEventListener("load", a, !1)
+}
+})();
+</script>
+<script type="text/javascript">
+window.Intercom("onShow", function() {
+window.dataLayer.push({
+event: "intercomOpened"
+})
+});
+window.Intercom("onHide", function() {
+window.dataLayer.push({
+event: "intercomClosed"
+})
+});
+</script>
