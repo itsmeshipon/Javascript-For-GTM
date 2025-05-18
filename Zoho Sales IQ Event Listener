@@ -1,0 +1,85 @@
+<script>
+// Listen for the chat button click event
+$zoho.salesiq.chatbutton.click(function() {
+window.dataLayer = window.dataLayer || [];
+window.dataLayer.push({
+event: "zoho_sales_IQ_event",
+action: "chatbutton_click"
+});
+});
+
+// Listen for the float button click event
+$zoho.salesiq.floatbutton.click(function() {
+window.dataLayer = window.dataLayer || [];
+window.dataLayer.push({
+event: "zoho_sales_IQ_event",
+action: "floatbutton_click"
+});
+});
+
+// Listen for the float window minimize event
+$zoho.salesiq.floatwindow.minimize(function() {
+window.dataLayer = window.dataLayer || [];
+window.dataLayer.push({
+event: "zoho_sales_IQ_event",
+action: "floatwindow_minimize"
+});
+});
+
+// Listen for the float window close event
+$zoho.salesiq.floatwindow.close(function() {
+window.dataLayer = window.dataLayer || [];
+window.dataLayer.push({
+event: "zoho_sales_IQ_event",
+action: "floatwindow_close"
+});
+});
+
+// Listen for the visitor chat initiation event
+$zoho.salesiq.visitor.chat(function(visitid, data) {
+window.dataLayer = window.dataLayer || [];
+window.dataLayer.push({
+event: "zoho_sales_IQ_event",
+action: "visitor_chat",
+visitid: visitid,
+visitorName: data.name,
+visitorEmail: data.email,
+visitorQuestion: data.question
+});
+});
+
+// Listen for the agent message event
+$zoho.salesiq.chat.agentMessage(function(visitid, data) {
+window.dataLayer = window.dataLayer || [];
+window.dataLayer.push({
+event: "zoho_sales_IQ_event",
+action: "agent_message",
+visitid: visitid,
+agentMessage: data.message
+});
+});
+
+// Listen for the visitor feedback event
+$zoho.salesiq.visitor.feedback(function(visitid, data) {
+window.dataLayer = window.dataLayer || [];
+window.dataLayer.push({
+event: "zoho_sales_IQ_event",
+action: "visitor_feedback",
+visitid: visitid,
+feedback: data.feedback,
+agent: data.agent
+});
+});
+
+// Listen for the visitor rating event
+$zoho.salesiq.visitor.rating(function(visitid, data) {
+window.dataLayer = window.dataLayer || [];
+window.dataLayer.push({
+event: "zoho_sales_IQ_event",
+action: "visitor_rating",
+visitid: visitid,
+agent: data.agent,
+rating: data.rating
+});
+});
+</script>
