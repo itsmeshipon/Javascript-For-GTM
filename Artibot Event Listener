@@ -1,0 +1,66 @@
+<script>
+// fires When your ArtiBot has loaded and is ready for use
+window.artibotApi.on('bot:ready', function () { 
+console.log('bot ready'); 
+});
+// fires When your ArtiBot is expaneded
+window.artibotApi.on('bot:expanded', function () { 
+console.log('DD - bot expanded'); 
+window.dataLayer = window.dataLayer || [];
+window.dataLayer.push({
+'event': 'artibot_event',
+'artibot_action': 'artibot widget expanded',
+'artibot_id': window.artibotApi.get('bot.botId')
+}); 
+});
+// fires When your ArtiBot is collapsed
+window.artibotApi.on('bot:collapsed', function () { 
+console.log('DD - bot collapsed'); 
+window.dataLayer = window.dataLayer || [];
+window.dataLayer.push({
+'event': 'artibot_event',
+'artibot_action': 'artibot widget collapsed',
+'artibot_id': window.artibotApi.get('bot.botId')
+}); 
+});
+// fires When your ArtiBot has started a chat
+window.artibotApi.on('chat:started', function () { 
+console.log('DD - chat started'); 
+window.dataLayer = window.dataLayer || [];
+window.dataLayer.push({
+'event': 'artibot_event',
+'artibot_action': 'chat started',
+'artibot_id': window.artibotApi.get('bot.botId')
+}); 
+});
+// fires When a visitor sends a message
+window.artibotApi.on('chat:message-sent', function () { 
+console.log('DD - message sent'); 
+window.dataLayer = window.dataLayer || [];
+window.dataLayer.push({
+'event': 'artibot_event',
+'artibot_action': 'visitor sents message',
+'artibot_id': window.artibotApi.get('bot.botId')
+}); 
+});
+// fires When ArtiBot sends a message
+window.artibotApi.on('chat:message-received', function () { 
+console.log('DD - message received'); 
+window.dataLayer = window.dataLayer || [];
+window.dataLayer.push({
+'event': 'artibot_event',
+'artibot_action': 'visitor receives message',
+'artibot_id': window.artibotApi.get('bot.botId')
+}); 
+});
+// fires When the chat with ArtiBot has ended
+window.artibotApi.on('chat:ended', function () { 
+console.log('DD - chat ended'); 
+window.dataLayer = window.dataLayer || [];
+window.dataLayer.push({
+'event': 'artibot_event',
+'artibot_action': 'chat ended',
+'artibot_id': window.artibotApi.get('bot.botId')
+}); 
+});
+</script>
