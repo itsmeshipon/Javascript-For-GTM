@@ -1,0 +1,40 @@
+<script>
+//fires when salesmate chat widget is opened
+window.addEventListener('SALESMATE_ON_WIDGET_SHOW', function() {
+window.dataLayer = window.dataLayer || [];
+window.dataLayer.push({
+'event': 'salesmate_Event',
+'event_type': 'chat',
+'salesmate_action': 'chat widget opened'
+});
+});
+//fires when salesmate chat widget is closed
+window.addEventListener('SALESMATE_ON_WIDGET_HIDE', function() {
+window.dataLayer = window.dataLayer || [];
+window.dataLayer.push({
+'event': 'salesmate_Event',
+'event_type': 'chat',
+'salesmate_action': 'chat widget closed'
+}); 
+} );
+// fires when unread message count changes
+window.addEventListener('SALESMATE_ON_WIDGET_COUNT_CHANGE', function() {
+window.dataLayer = window.dataLayer || [];
+window.dataLayer.push({
+'event': 'salesmate_Event',
+'event_type': 'chat',
+'salesmate_action': 'unread message count change'
+}); 
+});
+//fires when salesmate form gets submitted
+window.addEventListener("SM_FORM_SUBMITTED", function (e) {
+window.dataLayer = window.dataLayer || [];
+window.dataLayer.push({
+'event': 'salesmate_Event',
+'event_type': 'form_submitted',
+'salesmate_action': 'web form submitted',
+'salesmate_form_name': e.detail.formName, 
+'salesmate_form_data': e.detail.formData
+}); 
+});
+</script>
