@@ -1,0 +1,15 @@
+<script>
+  window.addEventListener('message', function(ev){
+   if(JSON.parse(ev.data).event === 'AcuityEvent'){
+      
+     window.dataLayer = window.dataLayer || [];
+     
+     dataLayer.push({
+     event: JSON.parse(ev.data).event,
+     fullName: JSON.parse(ev.data).FullName,
+     Email: JSON.parse(ev.data).Email,
+     ID: JSON.parse(ev.data).ID 
+     })
+   }
+  });
+</script>
