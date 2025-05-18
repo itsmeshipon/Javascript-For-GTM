@@ -1,0 +1,39 @@
+<script>
+//Track when your customer sends a message in chat 
+HelpCrunch('onCustomerMessage', function (event) {
+window.dataLayer.push({
+"event": "helpcrunch_chat_action",
+"ChatAction": "Visitor Sent Message",
+"ChatEventDetail": event,
+"chatMessage": event.detail.message.text,
+"chatMessageContent": event.detail.message.content,
+"chatOperator": event.detail.message.author_name,
+"chatUserID": event.detail.message.cid
+}); 
+});
+//Track when your customer opens the chat 
+HelpCrunch('onChatOpen', function () {
+window.dataLayer.push({
+"event": "helpcrunch_chat_action",
+"ChatAction": "Opened Chat Widget"
+}); 
+});
+//Track when your customer closes the chat 
+HelpCrunch('onChatClose', function () {
+window.dataLayer.push({
+"event": "helpcrunch_chat_action",
+"ChatAction": "Closed Chat Widget"
+}); 
+});
+//Track when your agents sends a message in chat 
+HelpCrunch('onAgentMessage', function (event) {
+window.dataLayer.push({
+"event": "helpcrunch_chat_action",
+"ChatAction": "Agent Sent Message",
+"chatMessageContent": event.detail.message.content,
+"chatMessage": event.detail.message.text,
+"chatOperator": event.detail.message.author_name,
+"chatUserID": event.detail.message.cid
+}); 
+});
+</script>
