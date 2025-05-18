@@ -1,0 +1,44 @@
+<script>
+Tawk_API = Tawk_API || {};
+var dlpush = function(a) {
+dataLayer.push({
+event: "tawkto_Interactions",
+chatInteraction: a,
+chatSessionId: Tawk_Window.sessionManager.sessionInformation,
+chatWidgetID: $_Tawk_WidgetId
+})
+};
+Tawk_API.onChatStarted = function() {
+dlpush("chat conversation started")
+};
+Tawk_API.onChatEnded = function() {
+dlpush("chat ended by user")
+};
+Tawk_API.onPrechatSubmit = function(a) {
+dlpush("prechat form submitted")
+};
+Tawk_API.onOfflineSubmit = function(a) {
+dlpush("offline form submitted")
+};
+Tawk_API.onChatMinimized = function(a) {
+dlpush("Tawk.to chat widget minimized")
+};
+Tawk_API.onChatMaximized = function(a) {
+dlpush("Tawk.to chat widget maximized")
+};
+Tawk_API.onChatMessageVisitor = function(a) {
+dlpush("message is sent by the visitor")
+};
+Tawk_API.onChatMessageAgent = function(a) {
+dlpush("message is sent by the agent")
+};
+Tawk_API.onChatMessageSystem = function(a) {
+dlpush("message is sent by the system")
+};
+Tawk_API.onChatSatisfaction = function(a) {
+dlpush("chat experience rate")
+};
+Tawk_API.onFileUpload = function(a) {
+dlpush("file uploaded by visitor")
+};
+</script>
