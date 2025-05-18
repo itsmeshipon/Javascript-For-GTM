@@ -1,0 +1,58 @@
+<script>
+(function() {
+// Helper function to push dataLayer event
+function pushDataLayer(eventName, detail) {
+var dataLayerObject = {
+event: "onsched_interactions",
+onsched_action: eventName
+};
+
+// Add all keys from the event detail to the dataLayerObject
+if (detail && typeof detail === "object") {
+for (var key in detail) {
+if (detail.hasOwnProperty(key)) {
+dataLayerObject[key] = detail[key];
+}
+}
+}
+
+// Push to dataLayer
+window.dataLayer = window.dataLayer || [];
+window.dataLayer.push(dataLayerObject);
+}
+
+// Get references to the relevant OnSched elements
+var availabilityElement = document.getElementById('availability');
+var calendarElement = document.getElementById('calendar');
+
+// Ensure the elements exist before attaching event listeners
+if (availabilityElement) {
+// Booking Confirmation Event
+availabilityElement.addEventListener('bookingConfirmation', function(event) {
+pushDataLayer('bookingConfirmation', event.detail);
+});
+
+// Click Time Event
+availabilityElement.addEventListener('clickTime', function(event) {
+pushDataLayer('clickTime', event.detail);
+});
+}
+
+if (calendarElement) {
+// Select Appointment Event
+calendarElement.addEventListener('selectAppointment', function(event) {
+pushDataLayer('selectAppointment', event.detail);
+});
+
+// Create Appointment Event (if applicable)
+calendarElement.addEventListener('createAppointment', function(event) {
+pushDataLayer('createAppointment', event.detail);
+});
+
+// Calendar View Change Event
+calendarElement.addEventListener('calendarViewChange', function(event) {
+pushDataLayer('calendarViewChange', event.detail);
+});
+}
+})();
+</script>
