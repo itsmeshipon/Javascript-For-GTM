@@ -1,0 +1,62 @@
+<script>
+// executed when a visitor clicks on the chat widget
+onWebChat.set("onClick",function(){ 
+window.dataLayer = window.dataLayer || [];
+window.dataLayer.push({
+'event': 'onWebChat_Action',
+'chatAction': 'Clicked Chat Widget',
+'ChatStatus': onWebChat.get("status"),
+'chatUserName': onWebChat.get("name"),
+'chatUserEmail': onWebChat.get("email"),
+'chatUserPhone': onWebChat.get("phone")
+}); 
+}); 
+// executed when the chat widget is maximized
+onWebChat.set("onMaximize",function(){ 
+window.dataLayer = window.dataLayer || [];
+window.dataLayer.push({
+'event': 'onWebChat_Action',
+'chatAction': 'Maximized Chat Widget',
+'ChatStatus': onWebChat.get("status"),
+'chatUserName': onWebChat.get("name"),
+'chatUserEmail': onWebChat.get("email"),
+'chatUserPhone': onWebChat.get("phone")
+}); 
+}); 
+// executed when the chat widget is minimized
+onWebChat.set("onMinimized",function(){ 
+window.dataLayer = window.dataLayer || [];
+window.dataLayer.push({
+'event': 'onWebChat_Action',
+'chatAction': 'Minimized Chat Widget',
+'ChatStatus': onWebChat.get("status"),
+'chatUserName': onWebChat.get("name"),
+'chatUserEmail': onWebChat.get("email"),
+'chatUserPhone': onWebChat.get("phone")
+}); 
+});
+// executed when a trigger is activated
+onWebChat.set("onTrigger",function(){ 
+window.dataLayer = window.dataLayer || [];
+window.dataLayer.push({
+'event': 'onWebChat_Action',
+'chatAction': 'Trigger Activated',
+'ChatStatus': onWebChat.get("status"),
+'chatUserName': onWebChat.get("name"),
+'chatUserEmail': onWebChat.get("email"),
+'chatUserPhone': onWebChat.get("phone")
+}); 
+}); 
+// executed when a visitor starts to write
+onWebChat.set("onStartWriting",function(){ 
+window.dataLayer = window.dataLayer || [];
+window.dataLayer.push({
+'event': 'onWebChat_Action',
+'chatAction': 'Visitor is Typing',
+'ChatStatus': onWebChat.get("status"),
+'chatUserName': onWebChat.get("name"),
+'chatUserEmail': onWebChat.get("email"),
+'chatUserPhone': onWebChat.get("phone")
+}); 
+}); 
+</script>
