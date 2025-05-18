@@ -1,0 +1,32 @@
+<script>
+function onSIApiReady() 
+{
+//Will trigger when chat window is minimized
+SI_API.onChatClosed = function()
+{
+window.dataLayer = window.dataLayer || [];
+window.dataLayer.push({
+'event': 'socialIntents_Action',
+'chatAction': 'chat window closed'
+});
+//Will trigger when chat window appears
+SI_API.onChatOpened = function()
+{
+window.dataLayer = window.dataLayer || [];
+window.dataLayer.push({
+'event': 'socialIntents_Action',
+'chatAction': 'chat window opened'
+});
+};
+//Will trigger when chat window is minimized
+SI_API.onChatEnded = function()
+{
+window.dataLayer = window.dataLayer || [];
+window.dataLayer.push({
+'event': 'socialIntents_Action',
+'chatAction': 'chat session ended'
+});
+};
+};
+};
+</script>
