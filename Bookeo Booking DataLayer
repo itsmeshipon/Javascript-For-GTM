@@ -1,0 +1,25 @@
+<script>
+window.dataLayer = window.dataLayer || [];
+window.dataLayer.push({
+  event: 'purchase',
+  ecommerce: {
+    transaction_id: '{BOOKINGNUMBER}',
+    affiliation: 'Bookeo Booking',
+    value: {TOTALPAID},
+    currency: 'USD', // Change currency if needed
+    tax: {TOTALTAX},
+    shipping: 0,
+    items: [{
+      item_name: '{ITEMDESC}',
+      item_id: '{PRODUCTCODE}',
+      price: {TOTALNET},
+      quantity: 1
+    }]
+  },
+  user_data: {
+    email: '{EMAIL}',
+    first_name: '{FIRSTNAME}',
+    last_name: '{LASTNAME}',
+    language: '{LANGUAGECODE}'
+  }
+});
