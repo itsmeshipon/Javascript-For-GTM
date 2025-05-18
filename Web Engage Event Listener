@@ -1,0 +1,165 @@
+<script>
+// when a visitor allows push notifications and the subscription completes successfully
+webengage.onReady(function () {
+webengage.webpush.onSubscribe(function () {
+window.dataLayer = window.dataLayer || [];
+window.dataLayer.push({
+'event': 'webengage_event',
+'webEngageType': "web push",
+'webEngageAction': 'subscribe to push notifications'
+});
+});
+}); 
+// when the on-site notification is opened
+webengage.notification.onOpen(function (data) {
+window.dataLayer = window.dataLayer || [];
+window.dataLayer.push({
+'event': 'webengage_event',
+'webEngageType': "notification",
+'webEngageAction': 'opened a notification',
+'notificationID': data.notificationId,
+'webEngageEventData': data
+});
+});
+// when the on-site notification is closed
+webengage.notification.onOpen(function (data) {
+window.dataLayer = window.dataLayer || [];
+window.dataLayer.push({
+'event': 'webengage_event',
+'webEngageType': "notification",
+'webEngageAction': 'closed a notification',
+'notificationID': data.notificationId,
+'webEngageEventData': data
+});
+}); 
+// when the on-site notification is closed
+webengage.notification.onClick(function (data) {
+window.dataLayer = window.dataLayer || [];
+window.dataLayer.push({
+'event': 'webengage_event',
+'webEngageType': "notification",
+'webEngageAction': 'clicked a notification',
+'notificationID': data.notificationId,
+'webEngageEventData': data
+});
+}); 
+// when the on-site survey is opened
+webengage.survey.onOpen(function (data) {
+window.dataLayer = window.dataLayer || [];
+window.dataLayer.push({
+'event': 'webengage_event',
+'webEngageType': "survey",
+'webEngageAction': 'survey is opened',
+'surveyID': data.surveyId,
+'webEngageEventData': data
+});
+}); 
+// when the on-site survey is closed
+webengage.survey.onClose(function (data) {
+window.dataLayer = window.dataLayer || [];
+window.dataLayer.push({
+'event': 'webengage_event',
+'webEngageType': "survey",
+'webEngageAction': 'survey is closed',
+'surveyID': data.surveyId,
+'webEngageEventData': data
+});
+}); 
+// when the on-site survey question is answered
+webengage.survey.onSubmit(function (data) {
+window.dataLayer = window.dataLayer || [];
+window.dataLayer.push({
+'event': 'webengage_event',
+'webEngageType': "survey",
+'webEngageAction': 'answered survey question',
+'surveyID': data.surveyId,
+'webEngageEventData': data
+});
+});
+// when the on-site survey is completed
+webengage.survey.onComplete(function (data) {
+window.dataLayer = window.dataLayer || [];
+window.dataLayer.push({
+'event': 'webengage_event',
+'webEngageType': "survey",
+'webEngageAction': 'survey is completed',
+'surveyID': data.surveyId,
+'webEngageEventData': data
+});
+});
+// when the on-site feedback widget is opened (Deprecated)
+webengage.feedback.onOpen(function (data) {
+window.dataLayer = window.dataLayer || [];
+window.dataLayer.push({
+'event': 'webengage_event',
+'webEngageType': "feedback",
+'webEngageAction': 'opened feedback widget',
+'webEngageEventData': data
+});
+});
+// when the on-site feedback widget is closed (Deprecated)
+webengage.feedback.onClose(function (data) {
+window.dataLayer = window.dataLayer || [];
+window.dataLayer.push({
+'event': 'webengage_event',
+'webEngageType': "feedback",
+'webEngageAction': 'closed feedback widget',
+'webEngageEventData': data
+});
+});
+// when the on-site feedback is submitted (Deprecated)
+webengage.feedback.onSubmit(function (data) {
+window.dataLayer = window.dataLayer || [];
+window.dataLayer.push({
+'event': 'webengage_event',
+'webEngageType': "feedback",
+'webEngageAction': 'submitted a feedback',
+'webEngageEventData': data
+});
+});
+// when browser prompts the notification permission to the user
+webengage.options('webpush.onWindowViewed', function () {
+window.dataLayer = window.dataLayer || [];
+window.dataLayer.push({
+'event': 'webengage_event',
+'webEngageType': "web push",
+'webEngageAction': 'web push notification permission prompt viewed'
+});
+});
+// when the user grants permission for Web Push
+webengage.options('webpush.onWindowAllowed', function () {
+window.dataLayer = window.dataLayer || [];
+window.dataLayer.push({
+'event': 'webengage_event',
+'webEngageType': "web push",
+'webEngageAction': 'web push notification permission granted'
+});
+});
+// when the user denies permission for Web Push
+webengage.options('webpush.onWindowDenied', function () {
+window.dataLayer = window.dataLayer || [];
+window.dataLayer.push({
+'event': 'webengage_event',
+'webEngageType': "web push",
+'webEngageAction': 'web push notification permission denied'
+});
+});
+// when the user grants permission for Web Push for the first time
+webengage.options('webpush.onPushRegistered', function () {
+window.dataLayer = window.dataLayer || [];
+window.dataLayer.push({
+'event': 'webengage_event',
+'webEngageType': "web push",
+'webEngageAction': 'web push notification permission granted first time'
+});
+});
+// when the user revokes permission for Web Push after having granted it before
+webengage.options('webpush.onPushUnregistered', function () {
+window.dataLayer = window.dataLayer || [];
+window.dataLayer.push({
+'event': 'webengage_event',
+'webEngageType': "web push",
+'webEngageAction': 'web push notification permission revoked'
+});
+});
+</script>
