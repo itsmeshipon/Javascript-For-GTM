@@ -1,0 +1,195 @@
+<script>
+// Triggers when an article has been viewed
+document.addEventListener('article:viewed', function (data) {
+window.dataLayer = window.dataLayer || [];
+window.dataLayer.push({
+'event': 'gist_action',
+'gistAction': "Article Viewed",
+'gistArticleID': data.detail.articleId,
+'gistArticleURL': data.detail.articleURL,
+'gistArticleTitle': data.detail.articleTitle,
+'gistArticleAurthorID': data.detail.authorId
+});
+}, false);
+// Triggers when a visitor leaves a feedback on any article
+document.addEventListener('article:feedback', function (data) {
+window.dataLayer = window.dataLayer || [];
+window.dataLayer.push({
+'event': 'gist_action',
+'gistAction': "Article Feedback Submitted",
+'gistArticleID': data.detail.articleId,
+'gistArticleRating': data.detail.rating.score
+});
+}, false);
+// Triggers when an article has been searched
+document.addEventListener('article:searched', function (data) {
+window.dataLayer = window.dataLayer || [];
+window.dataLayer.push({
+'event': 'gist_action',
+'gistAction': "Article Searched",
+'gistSearchTerm': data.detail.searchTerm,
+'gistSearchResultCount': data.detail.resultsCount
+});
+}, false);
+// Triggers when a button response in a chatbot has been clicked
+document.addEventListener('chatbot:buttonClicked', function (data) {
+window.dataLayer = window.dataLayer || [];
+window.dataLayer.push({
+'event': 'gist_action',
+'gistAction': "Chatbot Message Button Clicked",
+'gistConversationID': data.detail.conversationId,
+'gistBotButtonText': data.detail.buttonText,
+'gistBotButtonID': data.detail.buttonId,
+'gistBotQuestionID': data.detail.questionId,
+'gistBotCreation': data.detail.createdAt
+});
+}, false);
+// Triggers when a chat bot has been triggered
+document.addEventListener('chatbot:fired', function (data) {
+window.dataLayer = window.dataLayer || [];
+window.dataLayer.push({
+'event': 'gist_action',
+'gistAction': "Welcome Message of The Chatbot Shown",
+'gistConversationID': data.detail.conversationId,
+'gistBotButtonText': data.detail.buttonText,
+'gistBotButtonID': data.detail.buttonId,
+'gistBotQuestionID': data.detail.questionId,
+'gistBotCreation': data.detail.createdAt
+});
+}, false);
+// Triggers when the Messenger has been opened
+document.addEventListener('messenger:opened', function (data) {
+window.dataLayer = window.dataLayer || [];
+window.dataLayer.push({
+'event': 'gist_action',
+'gistAction': "Opened Gist Widget"
+});
+}, false);
+// Triggers when the Messenger has been closed
+document.addEventListener('messenger:closed', function (data) {
+window.dataLayer = window.dataLayer || [];
+window.dataLayer.push({
+'event': 'gist_action',
+'gistAction': "Closed Gist Widget"
+});
+}, false);
+// Triggers when a new conversation has started
+document.addEventListener('conversation:started', function (data) {
+window.dataLayer = window.dataLayer || [];
+window.dataLayer.push({
+'event': 'gist_action',
+'gistAction': "Conversation Has Started",
+'gistConversationID': data.detail.conversationId
+});
+}, false);
+// Triggers when a conversation has been opened
+document.addEventListener('conversation:opened', function (data) {
+window.dataLayer = window.dataLayer || [];
+window.dataLayer.push({
+'event': 'gist_action',
+'gistAction': "Previous Conversation Opened",
+'gistConversationID': data.detail.conversationId
+});
+}, false);
+// Triggers when a satisfaction rating has been left
+document.addEventListener('conversation:feedback', function (data) {
+window.dataLayer = window.dataLayer || [];
+window.dataLayer.push({
+'event': 'gist_action',
+'gistAction': "Chat Rating Submitted",
+'gistConversationID': data.detail.conversationId,
+'gistConversationRating': data.detail.rating
+});
+}, false);
+// Triggers when a message has been sent
+document.addEventListener('message:sent', function (data) {
+window.dataLayer = window.dataLayer || [];
+window.dataLayer.push({
+'event': 'gist_action',
+'gistAction': "User Sends Message",
+'gistConversationID': data.detail.conversationId,
+'gistMessage': data.detail.message
+});
+}, false);
+// Triggers when a message has been received
+document.addEventListener('message:received', function (data) {
+window.dataLayer = window.dataLayer || [];
+window.dataLayer.push({
+'event': 'gist_action',
+'gistAction': "User Receives Message",
+'gistConversationID': data.detail.conversationId,
+'gistMessage': data.detail.message
+});
+}, false);
+// Triggers when an email address has been captured
+document.addEventListener('email:captured', function (data) {
+window.dataLayer = window.dataLayer || [];
+window.dataLayer.push({
+'event': 'gist_action',
+'gistAction': "Email Address Captured",
+'gistUserEmail': data.detail.email
+});
+}, false);
+// Triggers when the GDPR form has been submitted
+document.addEventListener('gdpr:clicked', function (data) {
+window.dataLayer = window.dataLayer || [];
+window.dataLayer.push({
+'event': 'gist_action',
+'gistAction': "GDPR Consent Submitted",
+'gistUserEmail': data.detail.email,
+'gistGDPRStatus': data.detail.accepted,
+'gistVisitorID': data.detail.visitorId
+});
+}, false);
+// Triggers when a meeting has been requested
+document.addEventListener('meeting:requested', function (data) {
+window.dataLayer = window.dataLayer || [];
+window.dataLayer.push({
+'event': 'gist_action',
+'gistAction': "Gist Meeting Booking Requested",
+'gistConversationID': data.detail.conversationId
+});
+}, false);
+// Triggers when a meeting has been scheduled
+document.addEventListener('meeting:booked', function (data) {
+window.dataLayer = window.dataLayer || [];
+window.dataLayer.push({
+'event': 'gist_action',
+'gistAction': "Gist Meeting Scheduled",
+'gistMeeting': data.detail.meeting
+});
+}, false);
+// Triggers when an in-app chat message has been sent
+document.addEventListener('triggeredMessage:fired', function (data) {
+window.dataLayer = window.dataLayer || [];
+window.dataLayer.push({
+'event': 'gist_action',
+'gistAction': "In-app Chat Message Shown",
+'gistConversationID': data.detail.conversationId,
+'gistMessage': data.detail.message,
+'gistAgentID': data.detail.assistantId
+});
+}, false);
+// Triggers when an in-app chat message has been clicked
+document.addEventListener('triggeredMessage:clicked', function (data) {
+window.dataLayer = window.dataLayer || [];
+window.dataLayer.push({
+'event': 'gist_action',
+'gistAction': "In-app Chat Message Clicked",
+'gistConversationID': data.detail.conversationId,
+'gistMessage': data.detail.message,
+'gistAgentID': data.detail.assistantId
+});
+}, false);
+// Triggers when an in-app chat message has been dismissed
+document.addEventListener('triggeredMessage:dismissed', function (data) {
+window.dataLayer = window.dataLayer || [];
+window.dataLayer.push({
+'event': 'gist_action',
+'gistAction': "In-app Chat Message Dismissed",
+'gistConversationID': data.detail.conversationId,
+'gistMessage': data.detail.message,
+'gistAgentID': data.detail.assistantId
+});
+}, false);
+</script>
