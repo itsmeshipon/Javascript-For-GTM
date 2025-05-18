@@ -1,0 +1,24 @@
+<script type="text/javascript">
+var pollFormElementsIntervalId;
+
+function pollFormElements() {
+var a = document.querySelectorAll("form[id^='mktoForm_']");
+if (a instanceof NodeList) {
+clearInterval(pollFormElementsIntervalId);
+for (var b = 0; b < a.length; b++) attachEventListener(a[b])
+}
+}
+
+function attachEventListener(a) {
+a.addEventListener("submit", function(b) {
+setTimeout(function() {
+var c = 0 === a.querySelectorAll(".mktoInvalid").length;
+c && window.dataLayer.push({
+event: "marketo_form_submission",
+formID: a.id
+})
+}, 100)
+})
+}
+pollFormElementsIntervalId = setInterval(pollFormElements, 500);
+</script>
