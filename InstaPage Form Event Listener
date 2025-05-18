@@ -1,0 +1,10 @@
+<script>
+window.instapageFormSubmitSuccess = function (form) {
+window.dataLayer = window.dataLayer || [];
+window.dataLayer.push({
+'event': 'formSubmissionSuccess'
+});
+
+console.log('form submitted')
+};
+</script>
