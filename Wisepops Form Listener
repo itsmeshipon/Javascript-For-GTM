@@ -1,0 +1,77 @@
+<script>
+//The after-form-submit event is fired after the submission of a signup block form
+wisepops('listen', 'after-form-submit', function (event) {
+window.dataLayer = window.dataLayer || [];
+window.dataLayer.push({
+'event': 'wisepopsEvent',
+'wisepopupAction': 'popup form submitted',
+'wisepopsdetails': event.target,
+'wisepopsID': event.detail.popup.id,
+'eventType': event.type,
+'userLanguage': navigator.language,
+'userOS': navigator.userAgentData.platform,
+'userBrowser': navigator.userAgentData.brands[2].brand,
+'pageTitle': document.title
+});
+});
+//The after-popup-close event is fired after the popup has been closed
+wisepops('listen', 'after-popup-close', function (event) {
+window.dataLayer = window.dataLayer || [];
+window.dataLayer.push({
+'event': 'wisepopsEvent',
+'wisepopupAction': 'popup closed',
+'wisepopsdetails': event.target,
+'wisepopsID': event.detail.popup.id,
+'eventType': event.type,
+'userLanguage': navigator.language,
+'userOS': navigator.userAgentData.platform,
+'userBrowser': navigator.userAgentData.brands[2].brand,
+'pageTitle': document.title
+});
+});
+//The before-popup-display event is fired before the display of a popup.
+wisepops('listen', 'before-popup-display', function (event) {
+window.dataLayer = window.dataLayer || [];
+window.dataLayer.push({
+'event': 'wisepopsEvent',
+'wisepopupAction': 'popup displayed',
+'wisepopsdetails': event.target,
+'wisepopsID': event.detail.popup.id,
+'eventType': event.type,
+'userLanguage': navigator.language,
+'userOS': navigator.userAgentData.platform,
+'userBrowser': navigator.userAgentData.brands[2].brand,
+'pageTitle': document.title
+});
+});
+//The before-tab-display event is fired before the display of a tab.
+wisepops('listen', 'before-tab-display', function (event) {
+window.dataLayer = window.dataLayer || [];
+window.dataLayer.push({
+'event': 'wisepopsEvent',
+'wisepopupAction': 'tab displayed',
+'wisepopsdetails': event.target,
+'wisepopsID': event.detail.popup.id,
+'eventType': event.type,
+'userLanguage': navigator.language,
+'userOS': navigator.userAgentData.platform,
+'userBrowser': navigator.userAgentData.brands[2].brand,
+'pageTitle': document.title
+});
+});
+//The after-tracked-click event is fired after the conversion of a popup.
+wisepops('listen', 'after-tracked-click', function (event) {
+window.dataLayer = window.dataLayer || [];
+window.dataLayer.push({
+'event': 'wisepopsEvent',
+'wisepopupAction': 'interact with the popup',
+'wisepopsdetails': event.target,
+'wisepopsID': event.detail.popup.id,
+'eventType': event.type,
+'userLanguage': navigator.language,
+'userOS': navigator.userAgentData.platform,
+'userBrowser': navigator.userAgentData.brands[2].brand,
+'pageTitle': document.title
+});
+});
+</script>
