@@ -1,0 +1,16 @@
+<script>
+//chat widget status update
+window.chaport.on('widget.stateChange', function(widgetstate){
+window.dataLayer.push({
+"event": "chaport_Action",
+"ChatAction": "Chat widget " + window.chaport.getWidgetState()
+});
+});
+//Fires when the visitor starts a chat.
+window.chaport.on('chat.started', function(listener) {
+window.dataLayer.push({
+"event": "chaport_Action",
+"ChatAction": "Chat initiated"
+}); 
+});
+</script>
