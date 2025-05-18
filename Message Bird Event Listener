@@ -1,0 +1,13 @@
+<script>
+window.MessageBirdChatWidget.on('toggle', function (isOpen) {
+window.dataLayer = window.dataLayer || [];
+window.dataLayer.push({
+'event': 'messageBirdEvent',
+'chatAction': isOpen === true ? "opened the widget" : "closed the widget"
+});
+
+// isOpen === true -> customer opened the widget
+// isOpen === false -> customer closed the widget
+console.log(isOpen === true ? "DD - opened the widget" : "DD - closed the widget");
+});
+</script>
