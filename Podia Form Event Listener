@@ -1,0 +1,18 @@
+<script>
+// pushes the user data into dataLayer 
+if(Podia.Customer) {
+window.dataLayer = window.dataLayer || [];
+window.dataLayer.push({
+'event': 'podia_user_data',
+'userdata': Podia.Customer
+});
+};
+// when a customer purchases a course, product, or membership subscription (both free and paid) 
+if(Podia.Conversion) {
+window.dataLayer = window.dataLayer || [];
+window.dataLayer.push({
+'event': 'podia_conversion',
+'conversiondata': Podia.Conversion
+});
+};
+</script>
