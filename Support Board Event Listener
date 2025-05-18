@@ -1,0 +1,61 @@
+<script>
+
+// Function to push event data to the GTM dataLayer
+function pushToDataLayer(eventName, data) {
+window.dataLayer = window.dataLayer || [];
+var eventData = Object.assign({ event: eventName }, data);
+window.dataLayer.push(eventData);
+}
+
+// Event listeners for Support Board events
+$(document).on("SBChatOpen", function (e) {
+pushToDataLayer("SBChatOpen", {});
+});
+
+$(document).on("SBChatClose", function (e) {
+pushToDataLayer("SBChatClose", {});
+});
+
+$(document).on("SBNewConversationCreated", function (e, response) {
+pushToDataLayer("SBNewConversationCreated", {
+conversation: response
+});
+});
+
+$(document).on("SBConversationOpen", function (e, response) {
+pushToDataLayer("SBConversationOpen", {
+conversation: response
+});
+});
+
+$(document).on("SBArticles", function (e, response) {
+pushToDataLayer("SBArticles", {
+articles: response.articles,
+articleId: response.id
+});
+});
+
+$(document).on("SBRegistrationForm", function (e, response) {
+pushToDataLayer("SBRegistrationForm", {
+user: response.user,
+extra: response.extra
+});
+});
+
+$(document).on("SBPopup", function (e, response) {
+pushToDataLayer("SBPopup", {
+popupContent: response
+});
+});
+
+$(document).on("SBMessageSent", function (e, response) {
+pushToDataLayer("SBMessageSent", {
+userId: response.user_id,
+conversationId: response.conversation_id,
+message: response.message,
+attachments: response.attachments,
+conversationSource: response.conversation_source
+});
+});
+
+</script>
