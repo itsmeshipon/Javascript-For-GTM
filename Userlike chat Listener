@@ -1,0 +1,15 @@
+<script>
+userlikeTrackingEvent = function (event_name, global_ctx, session_ctx) {
+window.dataLayer.push({
+event: "Userlike_Action",
+ChatAction: event_name,
+ChatWidgetID: global_ctx.widget_id,
+ChatOperatorID: session_ctx.operator_id,
+ChatUserID: global_ctx.client_uuid,
+ChatwidgetLanguage: global_ctx.widget_lang,
+Userlanguage: navigator.language,
+ChatID: session_ctx.chat_id,
+ChatSessionID: session_ctx.session_id
+});
+};
+</script>
