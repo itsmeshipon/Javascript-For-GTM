@@ -1,0 +1,26 @@
+<script>
+smartsupp('on', 'message_sent', function(message) {
+window.dataLayer = window.dataLayer || [];
+window.dataLayer.push({
+'event': 'SmartsuppChatEvent',
+'chatAction': 'message sent',
+'chatBoxID': message.chatId,
+'visitorID': message.visitorId,
+'messageID': message.id,
+'ChatSubType': message.subType,
+'userLang': navigator.language
+});
+});
+smartsupp('on', 'message_received', function(message) {
+window.dataLayer = window.dataLayer || [];
+window.dataLayer.push({
+'event': 'SmartsuppChatEvent',
+'chatAction': 'message received',
+'chatBoxID': message.chatId,
+'visitorID': message.visitorId,
+'messageID': message.id,
+'ChatSubType': message.subType,
+'userLang': navigator.language
+});
+});
+</script>
