@@ -1,0 +1,37 @@
+<script>
+(function () {
+// Ensure jQuery is available
+if (typeof jQuery === 'undefined') {
+console.error('jQuery is required for WSForm event tracking.');
+return;
+}
+
+// Function to push events to dataLayer
+function pushToDataLayer(eventType, formObject, formId, instanceId) {
+window.dataLayer = window.dataLayer || [];
+window.dataLayer.push({
+event: eventType,
+form_id: formId,
+instance_id: instanceId,
+form_object: formObject,
+event_type: eventType
+});
+console.log('Pushed to dataLayer:', eventType, formId, instanceId);
+}
+
+// Attach event listeners
+jQuery(document).on('wsf-submit-before', function (event, formObject, formId, instanceId) {
+pushToDataLayer('wsform_submit_clicked', formObject, formId, instanceId);
+});
+
+jQuery(document).on('wsf-submit-success', function (event, formObject, formId, instanceId) {
+pushToDataLayer('wsform_submit_success', formObject, formId, instanceId);
+});
+
+jQuery(document).on('wsf-submit-error', function (event, formObject, formId, instanceId) {
+pushToDataLayer('wsform_submission_error', formObject, formId, instanceId);
+});
+
+console.log('WSForm event listeners initialized.');
+})();
+</script>
