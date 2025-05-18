@@ -1,0 +1,11 @@
+<script>
+jQuery(document).ready(function($){
+$(document).on( 'frmFormComplete', function( event, form, response ) {
+var formID = $(form).find('input[name="form_id"]').val();
+window.dataLayer = window.dataLayer || [];
+window.dataLayer.push({
+'event': 'formidable_form_submitted',
+'formID': formID
+});
+});});
+</script>
