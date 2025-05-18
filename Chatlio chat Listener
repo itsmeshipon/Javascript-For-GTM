@@ -1,0 +1,66 @@
+<script>
+//fires When the widget is collapsed
+document.addEventListener("chatlio.collapsed", function(event){
+window.dataLayer = window.dataLayer || [];
+window.dataLayer.push({
+'event': 'chatlio_event',
+'chatlio_action': 'chat widget minified'
+});
+});
+//fires When the widget is expanded
+document.addEventListener("chatlio.expanded", function(event){
+window.dataLayer = window.dataLayer || [];
+window.dataLayer.push({
+'event': 'chatlio_event',
+'chatlio_action': 'chat widget expanded'
+});
+});
+//fires When the widget fires a triggered message
+document.addEventListener("chatlio.trigger", function(event){
+window.dataLayer = window.dataLayer || [];
+window.dataLayer.push({
+'event': 'chatlio_event',
+'chatlio_action': 'chat trigger message shown'
+});
+});
+//fires When the visitor sends their first message to you
+document.addEventListener("chatlio.firstMessageSent", function(event){
+window.dataLayer = window.dataLayer || [];
+window.dataLayer.push({
+'event': 'chatlio_event',
+'chatlio_action': 'visitor sends first message'
+});
+});
+//fires When the visitor sends message
+document.addEventListener("chatlio.messageSent", function(event){
+window.dataLayer = window.dataLayer || [];
+window.dataLayer.push({
+'event': 'chatlio_event',
+'chatlio_action': 'visitor sends message'
+});
+});
+//fires When the visitor receives message
+document.addEventListener("chatlio.messageReceived", function(event){
+window.dataLayer = window.dataLayer || [];
+window.dataLayer.push({
+'event': 'chatlio_event',
+'chatlio_action': 'visitor receives message'
+});
+});
+//fires When the visitors submits the pre-chat form
+document.addEventListener("chatlio.preChatInfoSubmitted", function(event){
+window.dataLayer = window.dataLayer || [];
+window.dataLayer.push({
+'event': 'chatlio_event',
+'chatlio_action': 'submits prechat form'
+});
+});
+//fires When the visitor or the operator ends the chat
+document.addEventListener("chatlio.conversationEnded", function(event){
+window.dataLayer = window.dataLayer || [];
+window.dataLayer.push({
+'event': 'chatlio_event',
+'chatlio_action': 'conversation ended'
+});
+});
+</script>
