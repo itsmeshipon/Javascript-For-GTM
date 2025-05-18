@@ -1,0 +1,130 @@
+<script>
+
+  window.dataLayer = window.dataLayer || [];
+  window.dataLayer.push({
+    "event": "geoip.js",
+    "geoip.start": (new Date()).getTime()
+  });
+
+  (function () {
+
+    "use strict";
+
+    var isGeoIPLoaded, isWindowLoaded;
+
+    function onWindowLoadAndGeoIPLoad () {
+
+      if (isGeoIPLoaded && isWindowLoaded) {
+        window.dataLayer.push({
+          "event": "geoip.window.load"
+        });
+
+      }
+
+    }
+
+    window.addEventListener("load", function onWindowLoad () {
+
+      isWindowLoaded = true;
+      onWindowLoadAndGeoIPLoad();
+
+    });
+
+    function onSuccess (data, doNotSaveData) {
+      window.dataLayer.push({
+        "event": "geoip.load",
+        "geoip.data": data
+      });
+      isGeoIPLoaded = true;
+      onWindowLoadAndGeoIPLoad();
+
+      if (!doNotSaveData) {
+        if (data && data.ip) {
+
+          var key = "ipinfo.data." + data.ip;
+          localStorage.setItem(key, JSON.stringify(data));
+
+        }
+
+      }
+
+    }
+
+    function onError (err) {
+
+      throw new Error(err.code + ": " + err.error);
+
+    }
+
+    function onIPLoaded (ip) {
+
+      var data, key, request;
+
+      window.dataLayer.push({
+        "event": "geoip.ip",
+        "geoip.ip": ip
+      });
+
+      key = "ipinfo.data." + ip;
+      data = localStorage.getItem(key);
+      if (data) {
+
+        try {
+          data = JSON.parse(data);
+          onSuccess(data, true);
+        } catch (err) {
+          throw err;
+        }
+
+      } else {
+
+        request = new XMLHttpRequest();
+        request.open("GET", "https://ipinfo.io/" + ip + "/json", true);
+        request.onload = function () {
+
+          if (this.status >= 200 && this.status < 400) {
+
+            data = JSON.parse(this.response);
+            onSuccess(data);
+
+          } else {
+
+            onError(new Error("Unexpected HTTP Status Code " + this.status));
+
+          }
+
+        };
+        request.onerror = onError;
+        request.send();
+
+      }
+
+    }
+
+    var ip = sessionStorage.getItem("ipify.ip");
+    if (ip) {
+
+      onIPLoaded(ip);
+
+    } else {
+
+      window.ipifyCallback = function ipifyCallback (json) {
+
+        sessionStorage.setItem("ipify.ip", json.ip);
+        onIPLoaded(json.ip);
+
+      };
+
+      var newNode, referenceNode;
+
+      referenceNode = document.getElementsByTagName("script")[0];
+      newNode = document.createElement("script");
+      newNode.async = true;
+      newNode.src = "https://api64.ipify.org?format=jsonp&callback=ipifyCallback";
+      referenceNode.parentNode.insertBefore(newNode, referenceNode);
+
+    }
+
+  }());
+
+</script>
