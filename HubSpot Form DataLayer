@@ -1,0 +1,23 @@
+<script>
+window.addEventListener("message", function(event) {
+    if(!(event.data.type === 'hsFormCallback' && event.data.eventName === 'onFormSubmitted')) return;
+
+    var submissionValues = event.data.data.submissionValues;
+    var email = submissionValues.email || '';
+    var phone = submissionValues.phone || '';
+    var firstname = submissionValues.firstname || '';
+    var lastname = submissionValues.lastname || '';
+
+    window.dataLayer = window.dataLayer || [];
+    dataLayer.push({
+        event: 'hubspot_form_submit',
+        formId: event.data.id,
+        conversionId: event.data.data.conversionId,
+        formGuid: event.data.data.formGuid,
+        email: email,
+        phone: phone,
+        firstname: firstname,
+        lastname: lastname,
+    });
+});
+</script>
