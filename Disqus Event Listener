@@ -1,0 +1,12 @@
+<script>
+var disqus_config = function () {
+this.page.url = '{{Page URL}}'; // Replace PAGE_URL with your page's canonical URL variable
+this.page.identifier = '0123456789'; // Replace PAGE_IDENTIFIER with your page's unique identifier variable
+this.callbacks.onNewComment = [function() {
+window.dataLayer = window.dataLayer || [];
+window.dataLayer.push({
+'event': 'disqus_comment'
+});
+}];
+};
+</script>
