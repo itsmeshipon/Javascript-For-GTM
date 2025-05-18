@@ -1,0 +1,31 @@
+
+
+<script>
+//when a user is shown a popup
+function poptinVisible(poptin_id){
+window.dataLayer = window.dataLayer || [];
+window.dataLayer.push({
+'event': 'poptinPopUpEvent',
+'popupAction': 'popup visible',
+'poptinID': poptin_id
+});
+};
+//when a user submits a poptin popup form
+function onpoptinSubmit(poptin_id){ 
+window.dataLayer = window.dataLayer || [];
+window.dataLayer.push({
+'event': 'poptinPopUpEvent',
+'popupAction': 'popup form submitted',
+'poptinID': poptin_id
+});
+};
+//when a user closes a poptin popup
+function onpoptinClose(poptin_id){ 
+window.dataLayer = window.dataLayer || [];
+window.dataLayer.push({
+'event': 'poptinPopUpEvent',
+'popupAction': 'popup closed',
+'poptinID': poptin_id
+});
+};
+</script>
