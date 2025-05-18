@@ -1,0 +1,88 @@
+<script>
+//fires when a user opens the chat widget
+customerly.onChatOpened = function() { 
+window.dataLayer = window.dataLayer || [];
+window.dataLayer.push({
+'event': 'customerly_Event',
+'customerly_action': 'chat widget opened'
+}); 
+}
+//fires when a user closes the chat widget 
+customerly.onChatClosed = function() {
+window.dataLayer = window.dataLayer || [];
+window.dataLayer.push({
+'event': 'customerly_Event',
+'customerly_action': 'chat widget closed'
+}); 
+}
+//triggered when the customer is receiving a chat trigger message
+customerly.onTriggerFired = function(triggerId) { 
+window.dataLayer = window.dataLayer || [];
+window.dataLayer.push({
+'event': 'customerly_Event',
+'customerly_action': 'chat trigger displayed',
+'customerly_trigger_id': triggerId
+}); 
+}
+//fires when a chat lead is generated
+customerly.onLeadGenerated = function(email) {
+window.dataLayer = window.dataLayer || [];
+window.dataLayer.push({
+'event': 'customerly_Event',
+'customerly_action': 'new chat lead',
+'customerly_user_email': email
+}); 
+}
+//fires when a user starts a new conversation
+customerly.onNewConversation = function() {
+window.dataLayer = window.dataLayer || [];
+window.dataLayer.push({
+'event': 'customerly_Event',
+'customerly_action': 'starts a new conversation'
+}); 
+}
+//triggered when the lead answer to any of the profiling questions 
+customerly.onProfilingQuestionAnswered = function(attribute, value) {
+window.dataLayer = window.dataLayer || [];
+window.dataLayer.push({
+'event': 'customerly_Event',
+'customerly_action': 'answer profiling question',
+'profiling_answer': value,
+'profiling_attribute': attribute
+}); 
+}
+//triggered when any of the profiling questions have been shown to the visitor 
+customerly.onProfilingQuestionAsked = function(attribute) {
+window.dataLayer = window.dataLayer || [];
+window.dataLayer.push({
+'event': 'customerly_Event',
+'customerly_action': 'shown profiling question',
+'profiling_attribute': attribute
+}); 
+}
+//triggered when the client answers a Realtime Video Call
+customerly.onRealtimeVideoAnswered = function() {
+window.dataLayer = window.dataLayer || [];
+window.dataLayer.push({
+'event': 'customerly_Event',
+'customerly_action': 'answers a Realtime Video Call'
+}); 
+}
+//triggered when the client rejects a Realtime Video Call
+customerly.onRealtimeVideoRejected = function() {
+window.dataLayer = window.dataLayer || [];
+window.dataLayer.push({
+'event': 'customerly_Event',
+'customerly_action': 'rejects a Realtime Video Call'
+}); 
+}
+// triggered when the client opens a Help Center Article within the live chat widget.
+customerly.onHelpCenterArticleOpened = function(article) {
+window.dataLayer = window.dataLayer || [];
+window.dataLayer.push({
+'event': 'customerly_Event',
+'customerly_action': 'opens a Help Center Article',
+'article_object_data': article
+}); 
+}
+</script>
