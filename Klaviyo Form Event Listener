@@ -1,0 +1,13 @@
+<script>
+window.dataLayer = window.dataLayer || [];
+window.addEventListener("klaviyoForms", function(e) { 
+if (e.detail.type == 'submit') {
+dataLayer.push({
+'event' : 'klaviyoFormSubmission',
+'formId' : e.detail.formId,
+'formTitle' : e.detail.metaData.$source,
+'formEmail': e.detail.metaData.$email
+});
+}
+});
+</script>
