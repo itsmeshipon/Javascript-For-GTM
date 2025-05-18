@@ -1,0 +1,116 @@
+<script>
+//Triggered when the Helpscout Beacon is closed open
+Beacon('on', 'open', function () {
+window.dataLayer = window.dataLayer || [];
+window.dataLayer.push({
+'event': 'Helpscout_Interaction',
+'chatAction': "Opened Helpscout Chat Widget",
+'chatBeaconId': Beacon('info').beaconId,
+'chatBeaconName': Beacon('info').beaconName,
+'visitorDeviceID': Beacon('info').visitor.deviceId,
+'chatSessionData': Beacon('info').visitor.sessionData,
+'visitorEmail': Beacon('info').visitor.email,
+'visitorName': Beacon('info').visitor.name
+});
+});
+//Triggered when the Helpscout Beacon is closed
+Beacon('on', 'close', function () {
+window.dataLayer = window.dataLayer || [];
+window.dataLayer.push({
+'event': 'Helpscout_Interaction',
+'chatAction': "Closed Helpscout Chat Widget",
+'chatBeaconId': Beacon('info').beaconId,
+'chatBeaconName': Beacon('info').beaconName,
+'visitorDeviceID': Beacon('info').visitor.deviceId,
+'chatSessionData': Beacon('info').visitor.sessionData,
+'visitorEmail': Beacon('info').visitor.email,
+'visitorName': Beacon('info').visitor.name
+});
+});
+//Triggered when a Docs Article is opened in Beacon
+Beacon('on', 'article-viewed', function (article) {
+window.dataLayer = window.dataLayer || [];
+window.dataLayer.push({
+'event': 'Helpscout_Interaction',
+'chatAction': "Viewed Article",
+'articleID': article.id,
+'chatBeaconId': Beacon('info').beaconId,
+'chatBeaconName': Beacon('info').beaconName,
+'visitorDeviceID': Beacon('info').visitor.deviceId,
+'chatSessionData': Beacon('info').visitor.sessionData,
+'visitorEmail': Beacon('info').visitor.email,
+'visitorName': Beacon('info').visitor.name
+});
+});
+//Triggered when a Chat is started via Beacon
+Beacon('on', 'chat-started', function (chatvisitor) {
+window.dataLayer = window.dataLayer || [];
+window.dataLayer.push({
+'event': 'Helpscout_Interaction',
+'chatAction': "Conversation Started",
+'vistorName': chatvisitor.name,
+'vistorEmail': chatvisitor.email,
+'vistorMessage': chatvisitor.text
+});
+});
+//Triggered when a Message’s CTA is clicked
+Beacon('on', 'message-clicked', function (message) {
+window.dataLayer = window.dataLayer || [];
+window.dataLayer.push({
+'event': 'Helpscout_Interaction',
+'chatAction': "Clicked Message CTA",
+'messageID': message.id,
+'chatBeaconId': Beacon('info').beaconId,
+'chatBeaconName': Beacon('info').beaconName,
+'visitorDeviceID': Beacon('info').visitor.deviceId,
+'chatSessionData': Beacon('info').visitor.sessionData,
+'visitorEmail': Beacon('info').visitor.email,
+'visitorName': Beacon('info').visitor.name
+});
+});
+//Triggered when a Message’s close button is clicked
+Beacon('on', 'message-closed', function (message) {
+window.dataLayer = window.dataLayer || [];
+window.dataLayer.push({
+'event': 'Helpscout_Interaction',
+'chatAction': "Closed Message CTA",
+'messageID': message.id,
+'chatBeaconId': Beacon('info').beaconId,
+'chatBeaconName': Beacon('info').beaconName,
+'visitorDeviceID': Beacon('info').visitor.deviceId,
+'chatSessionData': Beacon('info').visitor.sessionData,
+'visitorEmail': Beacon('info').visitor.email,
+'visitorName': Beacon('info').visitor.name
+});
+});
+//Triggered when a Message is shown
+Beacon('on', 'message-closed', function (message) {
+window.dataLayer = window.dataLayer || [];
+window.dataLayer.push({
+'event': 'Helpscout_Interaction',
+'chatAction': "Message Shown To Visitor",
+'messageID': message.id,
+'chatBeaconId': Beacon('info').beaconId,
+'chatBeaconName': Beacon('info').beaconName,
+'visitorDeviceID': Beacon('info').visitor.deviceId,
+'chatSessionData': Beacon('info').visitor.sessionData,
+'visitorEmail': Beacon('info').visitor.email,
+'visitorName': Beacon('info').visitor.name
+});
+});
+//Triggered when a Message is shown
+Beacon('on', 'search', function (searchterm) {
+window.dataLayer = window.dataLayer || [];
+window.dataLayer.push({
+'event': 'Helpscout_Interaction',
+'chatAction': "Visitor Performed Search",
+'searchQuery': searchterm.query,
+'chatBeaconId': Beacon('info').beaconId,
+'chatBeaconName': Beacon('info').beaconName,
+'visitorDeviceID': Beacon('info').visitor.deviceId,
+'chatSessionData': Beacon('info').visitor.sessionData,
+'visitorEmail': Beacon('info').visitor.email,
+'visitorName': Beacon('info').visitor.name
+});
+});
+</script>
