@@ -1,0 +1,47 @@
+<script>
+window.BE_API = window.BE_API || {};
+window.BE_API.onChatWindowOpen = function () {
+window.dataLayer = window.dataLayer || [];
+window.dataLayer.push({
+'event': 'chatBot_Interaction',
+'chatAction': 'Maximize Chat Widget'
+});
+};
+// fires when you minimize chat widget
+window.BE_API = window.BE_API || {};
+window.BE_API.onChatWindowClose = function () {
+window.dataLayer = window.dataLayer || [];
+window.dataLayer.push({
+'event': 'chatBot_Interaction',
+'chatAction': 'Minimize Chat Widget'
+});
+};
+// fires when the chat window is hidden
+window.BE_API = window.BE_API || {};
+window.BE_API.onChatWindowHide = function () {
+window.dataLayer = window.dataLayer || [];
+window.dataLayer.push({
+'event': 'chatBot_Interaction',
+'chatAction': 'Hide Chat Widget'
+});
+};
+// fires on sending a message
+window.BE_API = window.BE_API || {};
+window.BE_API.onMessage = function (result) {
+window.dataLayer = window.dataLayer || [];
+window.dataLayer.push({
+'event': 'chatBot_Interaction',
+'chatAction': 'Send a Message',
+'Chatmessage': result
+});
+};
+// fires when a conversation is started
+window.BE_API = window.BE_API || {};
+window.BE_API.onStartConversation = function () {
+window.dataLayer = window.dataLayer || [];
+window.dataLayer.push({
+'event': 'chatBot_Interaction',
+'chatAction': 'Start Conversation'
+});
+};
+</script>
