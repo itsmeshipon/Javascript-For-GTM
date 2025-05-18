@@ -1,0 +1,149 @@
+<script>
+// For tracking Snap Engage Events in the Google Tag Manager GTM
+// Within GTM you'll need to setup the following dataLayer variables to help capture these events:
+// SnapEngage_eventCategory
+// SnapEngage_eventAction
+// SnapEngage_eventLabel
+// https://developer.snapengage.com/javascript-api/
+
+var seAgent;
+var seType;
+var seStatus;
+
+window.dataLayer = window.dataLayer || [];
+
+SnapEngage.setCallback('StartChat', function(email, msg, type) {
+// https://developer.snapengage.com/javascript-api/#startchat-event
+seAgent = email;
+window.dataLayer.push({
+'event': 'snapEngageEvent',
+'SnapEngage_eventCategory': 'SnapEngage',
+'SnapEngage_eventAction': 'StartChat',
+'SnapEngage_eventLabel': seAgent
+});
+});
+
+SnapEngage.setCallback('OpenProactive', function(agent, msg) {
+// https://developer.snapengage.com/javascript-api/#openproactive-event
+seAgent = agent;
+window.dataLayer.push({
+'event': 'snapEngageEvent',
+'SnapEngage_eventCategory': 'SnapEngage',
+'SnapEngage_eventAction': 'OpenProactive',
+'SnapEngage_eventLabel': seAgent
+});
+});
+
+SnapEngage.setCallback('Close', function(type, status) {
+// https://developer.snapengage.com/javascript-api/#close-event
+seType = type;
+window.dataLayer.push({
+'event': 'snapEngageEvent',
+'SnapEngage_eventCategory': 'SnapEngage',
+'SnapEngage_eventAction': 'Chat Closed',
+'SnapEngage_eventLabel': 'SnapEngage ' + seType + ' window closed.'
+});
+});
+
+SnapEngage.setCallback('Open', function(status) {
+// https://developer.snapengage.com/javascript-api/#open-event
+seStatus = status;
+window.dataLayer.push({
+'event': 'snapEngageEvent',
+'SnapEngage_eventCategory': 'SnapEngage',
+'SnapEngage_eventAction': 'Chat Opened',
+'SnapEngage_eventLabel': 'SnapEngage form opened and widget status was: ' + seStatus
+});
+});
+
+SnapEngage.setCallback('StartCallme', function(phone) {
+// https://developer.snapengage.com/javascript-api/#startcallme-event
+window.dataLayer.push({
+'event': 'snapEngageEvent',
+'SnapEngage_eventCategory': 'SnapEngage',
+'SnapEngage_eventAction': 'StartCallme',
+'SnapEngage_eventLabel': 'SnapEngage call me request started.'
+});
+});
+
+SnapEngage.setCallback('ChatMessageSent', function(msg) {
+// https://developer.snapengage.com/javascript-api/#chatmessagesent-event
+window.dataLayer.push({
+'event': 'snapEngageEvent',
+'SnapEngage_eventCategory': 'SnapEngage',
+'SnapEngage_eventAction': 'ChatMessageSent',
+'SnapEngage_eventLabel': 'visitor submited a chat message from: ' + window.location.href
+});
+});
+
+SnapEngage.setCallback('ChatMessageReceived', function (agent, msg) {
+// https://developer.snapengage.com/javascript-api/#chatmessagereceived-event
+seAgent = agent;
+window.dataLayer.push({
+'event': 'snapEngageEvent',
+'SnapEngage_eventCategory': 'SnapEngage',
+'SnapEngage_eventAction': 'ChatMessageReceived',
+'SnapEngage_eventLabel': 'message from ' + seAgent + ' was received by the visitor on: ' + window.location.href
+});
+});
+
+SnapEngage.setCallback('MessageSubmit', function(email, msg) {
+// https://developer.snapengage.com/javascript-api/#messagesubmit-event
+window.dataLayer.push({
+'event': 'snapEngageEvent',
+'SnapEngage_eventCategory': 'SnapEngage',
+'SnapEngage_eventAction': 'MessageSubmit',
+'SnapEngage_eventLabel': 'Offline message sent from: ' + window.location.href
+});
+});
+
+SnapEngage.setCallback('InlineButtonClicked', function(options) {
+// https://developer.snapengage.com/javascript-api/#button-event
+window.dataLayer.push({
+'event': 'snapEngageEvent',
+'SnapEngage_eventCategory': 'SnapEngage',
+'SnapEngage_eventAction': 'InlineButtonClicked',
+'SnapEngage_eventLabel': 'botName:[' + options.botName + '] buttonLabel:[' + options.buttonLabel +'] buttonValue:['+ options.buttonValue + ']'
+});
+});
+
+SnapEngage.setCallback(SnapEngage.callbacks.CHAT_ENDED, function(options) {
+// https://developer.snapengage.com/javascript-api/#chatended-event
+window.dataLayer.push({
+'event': 'snapEngageEvent',
+'SnapEngage_eventCategory': 'SnapEngage',
+'SnapEngage_eventAction': 'CHAT_ENDED',
+'SnapEngage_eventLabel': options.endedByUser ? "Visitor" : "Agent or the System"
+});
+});
+
+SnapEngage.setCallback('Minimize', function(isMinimized, chatType, boxType) {
+// https://developer.snapengage.com/javascript-api/#minimize-event
+window.dataLayer.push({
+'event': 'snapEngageEvent',
+'SnapEngage_eventCategory': 'SnapEngage',
+'SnapEngage_eventAction': 'Minimize',
+'SnapEngage_eventLabel': 'Chatbox is' + (isMinimized ? '' : ' not') + ' minimized. Chat Type:[' + chatType + '] Chat Box:[' + boxType + "]"
+});
+});
+
+SnapEngage.setCallback('RatingPromptClicked', function (botAlias, scaleType, selectedOption) {
+// https://developer.snapengage.com/javascript-api/#rating-prompt-clicked-event
+window.dataLayer.push({
+'event': 'snapEngageEvent',
+'SnapEngage_eventCategory': 'SnapEngage',
+'SnapEngage_eventAction': 'RatingPromptClicked',
+'SnapEngage_eventLabel': 'botAlias:[' + botAlias + '] scaleType:[' + scaleType + '] selectedOption:[' + selectedOption + ']'
+});
+});
+
+SnapEngage.setCallback('SwitchWidget', function(newWidgetId) {
+// https://developer.snapengage.com/javascript-api/#switchwidget-event
+window.dataLayer.push({
+'event': 'snapEngageEvent',
+'SnapEngage_eventCategory': 'SnapEngage',
+'SnapEngage_eventAction': 'SwitchWidget',
+'SnapEngage_eventLabel': 'widget ID: ' + newWidgetId
+});
+});
+</script>
