@@ -1,0 +1,40 @@
+<script>
+// Chat Status Changed Event Received
+Chatstack.events.on('StatusModeChanged', function (e, data) {
+window.dataLayer = window.dataLayer || [];
+window.dataLayer.push({
+'event': 'chatStackEvent',
+'chatStack_Action': "chat_session_status_" + data.status, // Corrected
+'chatStack_Status': data.status, // Corrected
+'chatStack_Widget_State': Chatstack.windowState,
+'chatStack_chat_state': Chatstack.chatState,
+'event_data': data
+});
+});
+
+// Chat State Changed Event Received
+Chatstack.events.on('ChatStateChanged', function (e, data) {
+window.dataLayer = window.dataLayer || [];
+window.dataLayer.push({
+'event': 'chatStackEvent',
+'chatStack_Action': "chat_state_" + data.state, // Corrected
+'chatStack_Status': Chatstack.statusMode, // Optional: no direct status in data
+'chatStack_Widget_State': Chatstack.windowState,
+'chatStack_chat_state': data.state, // Corrected
+'event_data': data
+});
+});
+
+// Initiate Chat State Changed Event Received
+Chatstack.events.on('InitiateChatStateChanged', function (e, data) {
+window.dataLayer = window.dataLayer || [];
+window.dataLayer.push({
+'event': 'chatStackEvent',
+'chatStack_Action': "initiate_chat_state_" + data.state, // Corrected
+'chatStack_Status': Chatstack.statusMode, // Optional: no direct status in data
+'chatStack_Widget_State': Chatstack.windowState,
+'chatStack_chat_state': data.state, // Corrected
+'event_data': data
+});
+});
+</script>
